@@ -12,7 +12,6 @@ public class TasksDto implements Validator {
     private String date;
     private String end;
     private int progress;
-    private List<Dependencies> dependencies;
 
     public TasksDto() {
     }
@@ -23,7 +22,6 @@ public class TasksDto implements Validator {
         this.date = date;
         this.end = end;
         this.progress = progress;
-        this.dependencies = dependencies;
     }
 
     public Long getId() {
@@ -64,14 +62,6 @@ public class TasksDto implements Validator {
 
     public void setProgress(int progress) {
         this.progress = progress;
-    }
-
-    public List<Dependencies> getDependencies() {
-        return dependencies;
-    }
-
-    public void setDependencies(List<Dependencies> dependencies) {
-        this.dependencies = dependencies;
     }
 
     @Override

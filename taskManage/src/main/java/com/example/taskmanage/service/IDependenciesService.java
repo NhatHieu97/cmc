@@ -11,4 +11,5 @@ import java.util.List;
 @Service
 public interface IDependenciesService {
     List<Dependencies> findAllDependencies();
+    void createDependencies(Dependencies dependencies);
 }

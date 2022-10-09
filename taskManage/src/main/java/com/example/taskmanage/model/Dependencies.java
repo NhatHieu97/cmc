@@ -11,16 +11,17 @@ public class Dependencies {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @JsonBackReference(value = "dependencies_tasks")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dependencies")
-    private List<Tasks> tasks;
+
+    @ManyToOne
+    @JoinColumn(name = "id_tasks", referencedColumnName = "id")
+
+    private Tasks tasks;
 
     public Dependencies() {
 
     }
 
-    public Dependencies(Long id, String name, List<Tasks> tasks) {
-        this.id = id;
+    public Dependencies( String name, Tasks tasks) {
         this.name = name;
         this.tasks = tasks;
     }
@@ -41,11 +42,11 @@ public class Dependencies {
         this.name = name;
     }
 
-    public List<Tasks> getTasks() {
+    public Tasks getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<Tasks> tasks) {
+    public void setTasks(Tasks tasks) {
         this.tasks = tasks;
     }
 }

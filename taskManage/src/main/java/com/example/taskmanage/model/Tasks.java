@@ -10,6 +10,7 @@ public class Tasks {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String name;
     private String date;
     private String end;
@@ -19,23 +20,22 @@ public class Tasks {
 
     private  Boolean sub;
 
+    @JsonBackReference(value = "dependencies_tasks")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tasks")
 
-
-    @ManyToOne
-    @JoinColumn(name = "id_dependencies", referencedColumnName = "id")
-
-    private Dependencies dependencies;
+    private List<Dependencies> dependencies;
 
     public Tasks() {
     }
 
-    public Tasks(Long id, String name, String date, String end, int progress, Dependencies dependencies) {
+    public Tasks(Long id, String name, String date, String end, int progress, Boolean main, Boolean sub) {
         this.id = id;
         this.name = name;
         this.date = date;
         this.end = end;
         this.progress = progress;
-        this.dependencies = dependencies;
+        this.main = main;
+        this.sub = sub;
     }
 
     public Long getId() {
@@ -78,11 +78,27 @@ public class Tasks {
         this.progress = progress;
     }
 
-    public Dependencies getDependencies() {
+    public Boolean getMain() {
+        return main;
+    }
+
+    public void setMain(Boolean main) {
+        this.main = main;
+    }
+
+    public Boolean getSub() {
+        return sub;
+    }
+
+    public void setSub(Boolean sub) {
+        this.sub = sub;
+    }
+
+    public List<Dependencies> getDependencies() {
         return dependencies;
     }
 
-    public void setDependencies(Dependencies dependencies) {
+    public void setDependencies(List<Dependencies> dependencies) {
         this.dependencies = dependencies;
     }
 }

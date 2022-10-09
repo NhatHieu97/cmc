@@ -16,4 +16,9 @@ public class DependenciesService implements IDependenciesService {
     public List<Dependencies> findAllDependencies() {
         return dependenciesRepository.findAll();
     }
+
+    @Override
+    public void createDependencies(Dependencies dependencies) {
+        dependenciesRepository.save(dependencies);
+    }
 }
